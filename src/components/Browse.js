@@ -4,9 +4,12 @@ import useNowPlayingMovies from '../hooks/useNowPlayingMovies'
 import MainContainer from './MainContainer'
 import SecondaryContainer from './SecondaryContainer'
 import usePopularMovie from '../hooks/usePopularMovie'
+import GPTSearch from './GPTSearch'
+import { useSelector } from 'react-redux'
 
 
 const Browse = () => {
+  const showgptsearch = useSelector(store => store.gpt.showGptSearch)
   // const dispatch = useDispatch()
   // const nowPlayingMovies=  async() =>{
   //  const data =  await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1' , API_OPTIONS);
@@ -23,8 +26,15 @@ const Browse = () => {
     <div>
     
       <Header/>
-      <MainContainer/>
-      <SecondaryContainer/>
+      {
+        showgptsearch ? <GPTSearch/> :      (
+          <>
+        <MainContainer/>
+        <SecondaryContainer/>
+        </>)
+      }
+      
+ 
     </div>
   )
 }

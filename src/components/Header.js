@@ -4,14 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth"
 import { useEffect } from 'react';
 import { auth } from '../utilities/firebase'
-import { useDispatch }  from 'react-redux';
+import { useDispatch, useSelector }  from 'react-redux';
 import { addUser, removeUser } from '../utilities/userSlice'
-import { NETFLIX_LOGO } from '../utilities/constant';
+import { NETFLIX_LOGO, Supported_LANGUAGES, USER_AVTAR } from '../utilities/constant';
+import { toggleGPTSearchView } from '../utilities/gptSlice';
+import { changeLanguage } from '../utilities/configSlice';
 
 
 const Header = () => {
+  const gptShowValue =  useSelector((store) => store.gpt.showGptSearch)
  const navigate = useNavigate()
  const dispatch = useDispatch()
+const  handleGptSearchClick = ()=>{
+   dispatch(toggleGPTSearchView());
+ }
 
   const handleSignOut = ()=>{
     signOut(auth).then(() => {
@@ -41,6 +47,12 @@ const Header = () => {
   return ()=>unsubscribe();
   
 } ,[])
+
+
+const handleLanguageChange =(e)=>{
+  dispatch(changeLanguage(e.target.value))
+
+}
   return (
     <div className="absolute px-8 w-screen py-2 bg-gradient-to-b from-black z-10 flex justify-between">
     <img 
@@ -53,7 +65,14 @@ const Header = () => {
     </div> */}
     {auth.currentUser && (
   <div className="flex p-2">
-    <img className="w-16 h-16" src={auth.currentUser.photoURL} alt="usericon" />
+   {  gptShowValue && <select className="p-2 bg-gray-900 text-white m-2" onChange={handleLanguageChange}>
+      {Supported_LANGUAGES.map((lang)=>{
+              return   <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+      })}
+    </select>}
+    <button className="py-2 px-4 m-2 bg-purple-800 text-white rounded-lg mx-4 my-2" 
+    onClick={handleGptSearchClick}>{  gptShowValue ? "Home page" : "GPT Search"}</button>
+    <img className="w-12 h-12" src={USER_AVTAR } alt="usericon" />
     <button onClick={handleSignOut} className="font-bold text-white ml-4">
       Sign Out
     </button>

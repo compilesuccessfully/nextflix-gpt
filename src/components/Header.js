@@ -54,9 +54,9 @@ const handleLanguageChange =(e)=>{
 
 }
   return (
-    <div className="absolute px-8 w-screen py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+    <div className="absolute px-8 w-screen py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
     <img 
-    className="w-44"
+    className="w-44 mx-auto md:mx-0"
     src={NETFLIX_LOGO} alt="logo"/>
 
 {/* <div className="flex p-2">
@@ -64,7 +64,7 @@ const handleLanguageChange =(e)=>{
       <button onClick={handleSignOut}className="font-bold text-white"> Sign Out</button>
     </div> */}
     {auth.currentUser && (
-  <div className="flex p-2">
+  <div className="flex p-2 justify-between">
    {  gptShowValue && <select className="p-2 bg-gray-900 text-white m-2" onChange={handleLanguageChange}>
       {Supported_LANGUAGES.map((lang)=>{
               return   <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
@@ -72,7 +72,7 @@ const handleLanguageChange =(e)=>{
     </select>}
     <button className="py-2 px-4 m-2 bg-purple-800 text-white rounded-lg mx-4 my-2" 
     onClick={handleGptSearchClick}>{  gptShowValue ? "Home page" : "GPT Search"}</button>
-    <img className="w-12 h-12" src={USER_AVTAR } alt="usericon" />
+    <img className=" hidden md:block w-12 h-12" src={USER_AVTAR } alt="usericon" />
     <button onClick={handleSignOut} className="font-bold text-white ml-4">
       Sign Out
     </button>

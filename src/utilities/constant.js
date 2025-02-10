@@ -4,7 +4,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer' + process.env.REACT_APP_TMBD_KEY
+      Authorization: 'Bearer '+process.env.REACT_APP_TMBD_KEY
     }
   };
 
@@ -13,4 +13,5 @@ export const API_OPTIONS = {
 
   export const Supported_LANGUAGES = [{identifier : "en" ,name : "English"} , {identifier : "hindi" ,name : "Hindi"} , {identifier : "spanish" ,name : "Spanish"}]
 
-  export const OPEN_AI_GPT_KEY = process.env.REACT_APP_OPEN_AI_GPT_KEY
+  export const OPEN_AI_GPT_KEY = process.env.REACT_APP_OPEN_AI_GPT_KEY;
+  console.log('API Key:', process.env.REACT_APP_OPEN_AI_GPT_KEY);

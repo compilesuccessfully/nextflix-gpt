@@ -6,7 +6,7 @@ const VideoTitle = ({title , overview}) => {
       <h1 className="text-2xl md:text-6xl font-bold text-white">{title}</h1>
       <p className="hidden md:inline-block py-6 text-lg w-1/4 text-white">{overview}</p>
       <div className="my-4   flex gap-2 ">
-        <button className="bg-white text-black py-1 md:py-4 px-2 md:px-12 text-xl flex gap-2  rounded-lg hover:bg-opacity-80"> 
+        <button className="bg-white text-black md:py-4 px-2 md:px-12 py-4 text-xl flex gap-2  rounded-lg hover:bg-opacity-80"> 
         <svg className="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polygon points="5 3 19 12 5 21 5 3" /></svg>
         Play</button>
         <button className= "hidden md:inline-block mx-2 bg-white text-black py-1 md:py-4 px-3 md:px-12 text-xl flex gap-2 bg-opacity-50 rounded-lg">
